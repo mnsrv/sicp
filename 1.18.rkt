@@ -1,0 +1,16 @@
+(define (double n)
+  (* n 2))
+(define (halve n)
+  (/ n 2))
+(define (even? n)
+  (= (remainder n 2) 0))
+(define (fast-mul-iter a b)
+  ; a * b + c
+  (define (fast-mul-step a b c)
+    (display a) (display ", ") (display b) (display ", ") (display c) (newline)
+    (cond ((= b 0) c)
+          ((even? b) (fast-mul-step (double a) (halve b) c))
+          (else (fast-mul-step a (+ b -1) (+ c a)))))
+  (fast-mul-step a b 0))
+
+(fast-mul-iter 8 10)
